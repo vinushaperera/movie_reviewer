@@ -12,6 +12,7 @@ function rateReview(){
 
     curl_setopt($ch, CURLOPT_POST, 1);
     curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);
+    curl_setopt( $ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 
     $response = curl_exec($ch);
