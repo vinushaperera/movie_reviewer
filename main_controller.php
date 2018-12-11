@@ -18,7 +18,7 @@ function rateReview(){
     $response = curl_exec($ch);
     curl_close($ch);
 
-    header('Location: ' . $response . '.php');
+    echo "<pre>$result</pre>";
 }
 
 ?>
