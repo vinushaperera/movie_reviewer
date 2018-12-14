@@ -1,7 +1,5 @@
 <?php
 
-include 'main_controller.php';
-
 $movie_id = "";
 $movie = "";
 $movie_desc = "";

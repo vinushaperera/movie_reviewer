@@ -1,3 +1,37 @@
+<?php
+
+include 'db_handler.php';
+
+$movie_id = "";
+$movie = "";
+$movie_desc = "";
+$img = "";
+$no_reviews = "";
+$score = "";
+
+if(isset($_POST['submit'])){
+
+    $movie_id = $_POST['id'];
+    $movie = $_POST['movie'];
+    $movie_desc = $_POST['desc'];
+    $img = $_POST['image'];
+    $no_reviews = $_POST['no_reviews'];
+    $score = $_POST['score'];
+
+    if($movie_id != null || $movie_id != ''){
+        $GLOBALS['movie_id'] = $movie_id;
+        $GLOBALS['movie'] = $movie;
+        $GLOBALS['movie_desc'] = $movie_desc;
+        $GLOBALS['img'] = $img;
+        $GLOBALS['no_reviews'] = $no_reviews;
+        $GLOBALS['score'] = $score;
+    } else {
+        header('Location: ' . 'index.php');
+    }
+    
+}
+
+?>
 <!Doctype html>
 <html>
 
@@ -26,24 +60,30 @@
             <div class="row">
                 <br /><br />
                 <div class="text-wrapper">
-                    <h3>Movie Name</h3>
+                    <h3><?php echo $movie; ?></h3>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-6">
-                    <img src="" alt="movie_poster" width="100%"/>
+                    <img src="<?php echo $img; ?>" alt="movie_poster" width="100%"/>
                 </div>
                 <div class="col-md-6">
                     <div class="row">
                         <div class="col-md-12">
-                            <p>movie description</p>
+                            <p><?php echo $movie_desc; ?></p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
                             <form action="review_submit.php" method="POST">
-                                <input type="text" name="review_box" placeholder="Enter your review here..." required/>
-                                <input type="submit" name="submit" value="Submit"/>
+                                <input type="text" name="review_box" placeholder="Enter your review..." required/>
+                                <input type="hidden" name="movie_id" value="<?php echo $movie_id; ?>"/>
+                                <input type="hidden" name="movie_name" value="<?php echo $movie; ?>"/>
+                                <input type="hidden" name="movie_desc" value="<?php echo $movie_desc; ?>"/>
+                                <input type="hidden" name="movie_img" value="<?php echo $img; ?>"/>
+                                <input type="hidden" name="no_reviews" value="<?php echo $no_reviews; ?>"/>
+                                <input type="hidden" name="review_score" value="<?php echo $score; ?>"/>
+                                <input type="submit" class="btn btn-info" name="submit" value="Submit"/>
                             </form>
                         </div>
                     </div>
